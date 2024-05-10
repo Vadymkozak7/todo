@@ -1,18 +1,17 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import Login from './pages/Login';
-import { Home } from './pages/Home';
+import { HomePage } from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
-  const isAuth = true;
+  const isAuth = false;
 
   return (
     <Routes>
-      {isAuth ? (
-        <Route path="/home" element={<Home />} />
-      ) : (
-        <Route path="/login" element={<Login />} />
-      )}
+      {isAuth}? <Route path="/" element={<HomePage />} /> :
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
     </Routes>
   );
 }

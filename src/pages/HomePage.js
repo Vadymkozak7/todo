@@ -1,12 +1,18 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../hooks/use-auth';
+import { useDispatch } from 'react-redux';
+import { removeUser } from '../store/slices/userslice';
 
 import TodoForm from '../components/TodoForm';
 import TodoList from '../components/TodoList';
 import TodoActions from '../components/TodoActions';
 
-export function Home() {
+export function HomePage() {
   const [todos, setTodos] = useState([]);
+  const dispatch = useDispatch();
+  const { isAuth, email } = useAuth();
 
   const addTodoHandler = (text) => {
     const newTodo = {
@@ -41,9 +47,15 @@ export function Home() {
 
   const completedTodoCount = todos.filter((todo) => todo.isCompleted).length;
 
-  return (
+  return isAuth ? (
     <div className="App">
-      <header className="header">Login</header>
+      <header className="header">
+        <button
+          className="btnFormLogOut"
+          onClick={() => dispatch(removeUser())}>
+          Log out
+        </button>
+      </header>
       <h1>Todo App</h1>
       <TodoForm addTodo={addTodoHandler} />
       {todos.length > 0 ? (
@@ -66,5 +78,7 @@ export function Home() {
         }`}</h2>
       )}
     </div>
+  ) : (
+    <Navigate to="/login" />
   );
 }
