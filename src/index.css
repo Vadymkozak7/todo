@@ -28,6 +28,7 @@ body {
   border-radius: 5px;
   height: 50px;
   text-align: center;
+  cursor: pointer;
 }
 
 .btnForm:hover {
@@ -118,6 +119,7 @@ body {
   border-radius: 5px;
   height: 35px;
   text-align: center;
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -152,6 +154,7 @@ body {
 .btnFormLogOut:hover {
   background-color: rgb(179, 47, 11);
   color: white;
+  cursor: pointer;
 }
 
 .AuthFormConteiner input {
@@ -173,4 +176,8 @@ body {
   display: flex;
   text-align: center;
   justify-content: center;
+}
+
+.error {
+  color: red;
 }
